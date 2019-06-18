@@ -44,12 +44,25 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    if(req.method === 'OPTIONS'){
+        return res.sendStatus(200);
+    }
     next();
 });
 
 app.use('/graphql', graphqlHttp({
     schema: graphqlSchema,
-    rootValue: graphqlResolver
+    rootValue: graphqlResolver,
+    graphiql: true,
+    formatError(err) {
+        if(!err.originalError){
+            return err;
+        }
+        const data = err.originalError.data;
+        const message = err.message || 'An error ocurred.';
+        const code = err.originalError.code || 500;
+        return { message: message, status: code, data: data}
+    }
 }));
 
 app.use((error, req, res, next) => {
