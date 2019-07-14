@@ -2,7 +2,7 @@
 
 This project is to be the Restful API for the single page website by using GraphQl with Expressjs and using cloud database MongoDB Atlas. The website features include: creating own message and posting, you can CRUP some messages in the website. The website can process with authentication, validation, up&download files, etc.
 
-The single page web of this API is on Github: [React GraphQL Front-end](https://github.com/ping58972/react-graphql-frontend.git)
+The single page web of this API is on Github: [React GraphQL Front-end](https://github.com/ping58972/react-graphql-frontend)
 
 ## Built with
 
